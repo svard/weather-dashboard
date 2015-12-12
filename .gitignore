@@ -9,6 +9,6 @@ pom.xml.asc
 *.jar
 *.class
 *.log
-config.edn
+my-config.edn
 /.lein-*
 /.nrepl-port

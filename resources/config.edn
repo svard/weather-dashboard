@@ -1,0 +1,4 @@
+{:http {:host #immuconf/default "localhost"
+        :port #immuconf/default 8080
+        :path #immuconf/default "/"
+        :mode #immuconf/default :prod}}
