@@ -5,7 +5,7 @@
             [clojure.tools.logging :as log])
   (:gen-class))
 
-(def config (config/load "resources/config.edn" "config.edn"))
+(def config (config/load "resources/config.edn" "my-config.edn"))
 
 (defn system [config]
   (component/system-map

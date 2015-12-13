@@ -19,10 +19,11 @@
 
                  ;; cljs
                  [org.clojure/clojurescript "1.7.170"]
-                 [com.cognitect/transit-cljs "0.8.232"]
                  [org.omcljs/om "1.0.0-alpha25"]
                  [sablono "0.5.0"]
-                 [cljsjs/react-dom-server "0.14.3-0"]]
+                 [cljsjs/react-dom-server "0.14.3-0"]
+                 [cljsjs/material "1.0.6-0"]
+                 [cljsjs/chartist "0.9.4-1"]]
 
   :source-paths ["src/clj" "src/cljs"]
 
@@ -37,23 +38,20 @@
             [lein-less "1.7.5"]
             [cider/cider-nrepl "0.10.0"]]
   
-  :cljsbuild {
-    :builds [{:id "dev"
-              :source-paths ["src/cljs"]
-              :figwheel {:on-jsload "net.svard.weather-dashboard/on-js-reload" }
-              :compiler {:main net.svard.weather-dashboard
-                         :asset-path "js/compiled/out"
-                         :output-to "resources/public/js/compiled/index.js"
-                         :output-dir "resources/public/js/compiled/out"
-                         :source-map-timestamp true }}
-
-             {:id "min"
-              :source-paths ["src/cljs"]
-              :jar true
-              :compiler {:output-to "resources/public/js/compiled/index.js"
-                         :main net.svard.weather-dashboard
-                         :optimizations :advanced
-                         :pretty-print false}}]}
+  :cljsbuild {:builds [{:id "dev"
+                        :source-paths ["src/cljs"]
+                        :figwheel {:on-jsload "net.svard.weather-dashboard/on-js-reload" }
+                        :compiler {:main net.svard.weather-dashboard
+                                   :asset-path "js/compiled/out"
+                                   :output-to "resources/public/js/compiled/index.js"
+                                   :output-dir "resources/public/js/compiled/out"
+                                   :source-map-timestamp true }}
+                       {:id "min"
+                        :source-paths ["src/cljs"]
+                        :compiler {:output-to "resources/public/js/compiled/index.js"
+                                   :main net.svard.weather-dashboard
+                                   :optimizations :advanced
+                                   :pretty-print false}}]}
 
   :less {:source-paths ["src/less"]
          :target-path "resources/public/css/compiled"}
@@ -64,7 +62,7 @@
                         [com.cemerick/piggieback "0.1.5"] 
                         [org.clojure/tools.nrepl "0.2.12"]]}
    :uberjar {:aot [net.svard.weather-dashboard]
-             :prep-tasks ["compile" ["cljsbuild" "once"]]}}
+             :prep-tasks ["compile" ["cljsbuild" "once" "min"]]}}
 
   :figwheel {
              ;; :http-server-root "public" ;; default and assumes "resources" 
