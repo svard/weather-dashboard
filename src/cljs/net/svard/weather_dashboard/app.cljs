@@ -17,11 +17,6 @@
 
 (def header (om/factory Header))
 
-;; (defn dashboard-item [idx {:keys [date] :as items}]
-;;   (html [:div {:class "mdl-cell mdl-cell--3-col"
-;;                :key idx}
-;;          (cc/card items)]))
-
 (defui DashboardItem
   static om/Ident
   (ident [_ {:keys [type id]}]
@@ -29,16 +24,18 @@
 
   static om/IQuery
   (query [_]
-    {:temperature (om/get-query cc/Card)
-     :precipitation (om/get-query cc/Card)
-     :humidity (om/get-query cc/Card)})
+    {:temperature (om/get-query cc/TemperatureCard)
+     :precipitation (om/get-query cc/PrecipitationCard)
+     :humidity (om/get-query cc/HumidityCard)})
 
   Object
   (render [this]
-    (let [{:keys [id] :as item} (om/props this)]
+    (let [{:keys [id type] :as item} (om/props this)]
       (html [:div {:class "mdl-cell mdl-cell--3-col"
                    :key id}
-             (cc/card item)]))))
+             (({:temperature cc/temperature-card
+                :precipitation cc/precipitation-card
+                :humidity cc/humidity-card} type) item)]))))
 
 (def dashboard-item (om/factory DashboardItem))
 

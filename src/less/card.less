@@ -1,0 +1,44 @@
+.card {
+    padding: 12px;
+    
+    &-title {
+        margin: 0;
+        
+        &-icon {
+            font-size: 1.5rem;
+            margin-right: 5px;
+        }
+    }
+
+    &-subtitle {
+        color: rgba(0,0,0,.54);
+        font-size: 0.8rem;
+    }
+
+    &-value {
+        position: relative;
+        margin-top: 12px;
+        line-height: 3.5rem;
+        font-size: 3.5rem;
+    }
+
+    &-unit {
+        &-celsius {
+            position: absolute;
+            top: 0;
+            font-size: 28px;
+        }
+
+        &-millimeter {
+            position: absolute;
+            top: -13px;
+            font-size: 1.3rem;
+        }
+
+        &-percentage {
+            position: absolute;
+            top: -9px;
+            font-size: 1.3rem;
+        }
+    }
+}
